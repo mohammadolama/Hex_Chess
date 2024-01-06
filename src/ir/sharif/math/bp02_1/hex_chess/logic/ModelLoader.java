@@ -39,24 +39,30 @@ public class ModelLoader {
     public Board loadBord() {
 
         List<Tile> map = new ArrayList<>();
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 13; j++) {
-                map.add(createTile(i,j));
-            }
-        }
+//
+//        for (int j = 0; j < 6; j++) {
+//            for (int i = 5-j; i <11 ; i++) {
+//                map.add(createTile(i,j));
+//            }
+//        }
+//        for (int j = 6; j < 11; j++) {
+//            for (int i = 0; i < (11-j)+5; i++) {
+//                map.add(createTile(i,j));
+//            }
+//        }
+//
         Board board = new Board(map);
 
         return board;
-
     }
 
-    private Tile createTile(int i , int j){
-        Tile tile = new Tile(i , j);
-        if ((i == 6 && (j>=0 && j <=2))){
-            tile.setPiece(new Piece(Name.BLACK_BISHOP));
-        }
-        return tile;
-    }
+//    private Tile createTile(int i , int j){
+//        Tile tile = new Tile(i , j);
+//        if ((i == 6 && (j>=0 && j <=2))){
+//            tile.setPiece(new Piece(Name.BLACK_BISHOP));
+//        }
+//        return tile;
+//    }
 
     /**
      * load player.

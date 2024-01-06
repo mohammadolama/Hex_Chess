@@ -45,13 +45,13 @@ public class GraphicalGameStateBuilder {
     private List<GraphicalTile> convertCells(List<Tile> tiles) {
         List<GraphicalTile> res = new ArrayList<>();
 
-        for (Tile tile : tiles) {
-            if (tile.getPiece() != null) {
-                res.add(new GraphicalTile(tile.getX(), tile.getY(), tile.getPiece().getName()));
-            } else {
-                res.add(new GraphicalTile(tile.getX(), tile.getY(), tile.getX() + "," + tile.getY()));
-            }
-        }
+//        for (Tile tile : tiles) {
+//            if (tile.getPiece() != null) {
+//                res.add(new GraphicalTile(tile.getX(), tile.getY(), tile.getPiece().getName()));
+//            } else {
+//                res.add(new GraphicalTile(tile.getX(), tile.getY(), tile.getX() + "," + tile.getY()));
+//            }
+//        }
 
         return res;
     }

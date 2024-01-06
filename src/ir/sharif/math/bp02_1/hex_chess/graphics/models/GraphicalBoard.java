@@ -7,6 +7,8 @@ public class GraphicalBoard extends GraphicalModel {
 
     public List<GraphicalTile> tiles;
 
+    public List<HexagonButton> buttons;
+
     public GraphicalBoard(List<GraphicalTile> map) {
         this.tiles = map;
     }
@@ -21,10 +23,11 @@ public class GraphicalBoard extends GraphicalModel {
     }
 
     @Override
-    public void paint(Graphics2D graphics2D) {
+    public void paint(Graphics2D g) {
+
         for (GraphicalTile tile : tiles) {
             if (tile != null){
-                tile.paint(graphics2D);
+                tile.paint(g);
             }
         }
     }

@@ -5,21 +5,28 @@ import ir.sharif.math.bp02_1.hex_chess.model.pieces.Piece;
 import java.awt.*;
 
 public class Tile {
-    private final int x, y;
+    private final int row;
+    private final char col;
     private Piece piece;
 
-    public Tile( int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Tile( int row, char col) {
+        this.row = row;
+        this.col = col;
         this.piece = null;
     }
 
-    public int getX() {
-        return x;
+    public Tile(int row, char col, Piece piece) {
+        this.row = row;
+        this.col = col;
+        this.piece = piece;
     }
 
-    public int getY() {
-        return y;
+    public int getRow() {
+        return row;
+    }
+
+    public char getCol() {
+        return col;
     }
 
     public Piece getPiece() {
