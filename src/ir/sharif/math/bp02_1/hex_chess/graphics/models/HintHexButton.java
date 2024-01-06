@@ -10,6 +10,7 @@ public class HintHexButton extends HexagonButton {
         super(row, col, radius, length, width);
         setBackground(Color.RED);
         setVisible(true);
+        this.removeMouseListener(this);
     }
 
 

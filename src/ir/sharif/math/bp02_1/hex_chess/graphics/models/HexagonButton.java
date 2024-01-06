@@ -4,8 +4,10 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public  class HexagonButton extends JButton {
+public  class HexagonButton extends JButton implements MouseListener {
 
         private int startX = 250;
         private int startY = 450;
@@ -37,6 +39,7 @@ public  class HexagonButton extends JButton {
 
             setBounds(x,y,LENGTH , WIDTH);
             setVisible(true);
+            this.addMouseListener(this);
 
         }
 
@@ -112,5 +115,30 @@ public  class HexagonButton extends JButton {
 
     public void setRow(int row) {
         this.row = row;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("Clicked on button " + col+row);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
