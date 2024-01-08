@@ -45,6 +45,7 @@ public class Frame extends JFrame {
     }
 
     private void update() {
+        this.mainPanel.update();
         super.revalidate();
         super.repaint();
     }

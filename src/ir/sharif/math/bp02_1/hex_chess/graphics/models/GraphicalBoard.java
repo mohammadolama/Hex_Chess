@@ -3,32 +3,19 @@ package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 import java.awt.*;
 import java.util.List;
 
-public class GraphicalBoard extends GraphicalModel {
+public class GraphicalBoard{
 
-    public List<GraphicalTile> tiles;
+    public List<HexagonButton> tiles;
 
-    public List<HexagonButton> buttons;
-
-    public GraphicalBoard(List<GraphicalTile> map) {
+    public GraphicalBoard(List<HexagonButton> map) {
         this.tiles = map;
     }
 
-
-    public List<GraphicalTile> getTiles() {
+    public List<HexagonButton> getTiles() {
         return tiles;
     }
 
-    public void setTiles(List<GraphicalTile> tiles) {
+    public void setTiles(List<HexagonButton> tiles) {
         this.tiles = tiles;
-    }
-
-    @Override
-    public void paint(Graphics2D g) {
-
-        for (GraphicalTile tile : tiles) {
-            if (tile != null){
-                tile.paint(g);
-            }
-        }
     }
 }

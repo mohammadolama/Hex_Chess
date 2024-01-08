@@ -1,13 +1,13 @@
 package ir.sharif.math.bp02_1.hex_chess.logic;
 
-import ir.sharif.math.bp02_1.hex_chess.graphics.panel.BoardPanel;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 import ir.sharif.math.bp02_1.hex_chess.model.Board;
 import ir.sharif.math.bp02_1.hex_chess.model.Player;
 import ir.sharif.math.bp02_1.hex_chess.model.Tile;
-import ir.sharif.math.bp02_1.hex_chess.model.pieces.Name;
 import ir.sharif.math.bp02_1.hex_chess.model.pieces.Piece;
 
+import javax.lang.model.element.Name;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +16,10 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import ir.sharif.math.bp02_1.hex_chess.model.pieces.Name.*;
+
+import static ir.sharif.math.bp02_1.hex_chess.model.pieces.Name.*;
 
 public class ModelLoader {
     private final File boardFile;
@@ -39,21 +43,27 @@ public class ModelLoader {
     public Board loadBord() {
 
         List<Tile> map = new ArrayList<>();
-//
-//        for (int j = 0; j < 6; j++) {
-//            for (int i = 5-j; i <11 ; i++) {
-//                map.add(createTile(i,j));
-//            }
-//        }
-//        for (int j = 6; j < 11; j++) {
-//            for (int i = 0; i < (11-j)+5; i++) {
-//                map.add(createTile(i,j));
-//            }
-//        }
-//
-        Board board = new Board(map);
+        Character[] chars = HintUtil.getChars();
 
-        return board;
+
+        for (Character aChar : chars) {
+            int col = HintUtil.getCol(aChar);
+            if (col <= 6){
+                for (int i = 1; i < 6+col; i++) {
+                    Tile tile=new Tile(i,aChar);
+                    tile.setPiece(new Piece(WHITE_ROCK));
+                    map.add(tile);
+                }
+            }else {
+                for (int i = col-5; i < 12; i++) {
+                    Tile tile = new Tile(i,aChar);
+                    tile.setPiece(new Piece(BLACK_BISHOP));
+                    map.add(tile);
+                }
+            }
+        }
+
+        return new Board(map);
     }
 
 //    private Tile createTile(int i , int j){

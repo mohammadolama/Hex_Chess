@@ -9,60 +9,51 @@ import java.awt.event.MouseListener;
 
 public  class HexagonButton extends JButton implements MouseListener {
 
-        private int startX = 250;
-        private int startY = 450;
-
-        private  final int LENGTH;
-        private  final int WIDTH ;
+        private int startX;
+        private int startY;
+        private  final int WIDTH;
+        private  final int HEIGHT;
         private final int radius;
         private char col;
         private int row;
 
+        private GraphicalPiece piece;
 
 
-
-        public HexagonButton(int row, char col, int radius , int length , int width) {
+        public HexagonButton(int row, char col, int radius , int width , int height , int startX , int starY) {
             this.row = row;
             this.col = col;
             this.radius = radius;
-            this.LENGTH = length;
             this.WIDTH = width;
+            this.HEIGHT = height;
+            this.startX = startX;
+            this.startY = starY;
             setContentAreaFilled(false);
             setFocusPainted(true);
             setBorderPainted(false);
-            setPreferredSize(new Dimension(WIDTH, LENGTH));
+            setPreferredSize(new Dimension(HEIGHT, WIDTH));
             setBackground(HintUtil.getColor(row , col));
 
             int x = startX + (int)((3*radius/2) * (HintUtil.getCol(col)-1));
-            startY = HintUtil.getCol(col) <= 6 ? startY + (width/2) * (HintUtil.getCol(col) -1) : startY + (width/2) * (11 - HintUtil.getCol(col));
-            int y = HintUtil.getCol(col) <= 6 ? startY - width * (row-1) : startY - width * (5 - (HintUtil.getCol(col) - row));
+            this.startY = HintUtil.getCol(col) <= 6 ? startY + (height/2) * (HintUtil.getCol(col) -1) : startY + (height/2) * (11 - HintUtil.getCol(col));
+            int y = HintUtil.getCol(col) <= 6 ? startY - height * (row-1) : startY - height * (5 - (HintUtil.getCol(col) - row));
 
-            setBounds(x,y,LENGTH , WIDTH);
+            setBounds(x,y, WIDTH, HEIGHT);
             setVisible(true);
             this.addMouseListener(this);
 
         }
 
-        public Polygon getPolygon(int originX, int originY, int radius) {
+        public Polygon getPolygon(int radius) {
             Polygon hex = new Polygon();
             hex.addPoint((int) (radius / 2), 0);
             hex.addPoint((int) (3 * radius / 2), 0);
-            hex.addPoint((int) (2 * radius), WIDTH/2);
-            hex.addPoint((int) (3 * radius / 2), WIDTH);
-            hex.addPoint((int) (radius / 2), WIDTH);
-            hex.addPoint(0, WIDTH/2);
-//            for (int i = 0; i < 6; i++) {
-//                double angle = (double) (2 * i + 1) / 6 * Math.PI;
-//                int dx = (int) Math.ceil(radius * Math.cos(angle));
-//                int dy = (int) Math.ceil(radius * Math.sin(angle));
-//                hex.addPoint(xCenter + dx, yCenter + dy);
-//            }
+            hex.addPoint((int) (2 * radius), HEIGHT /2);
+            hex.addPoint((int) (3 * radius / 2), HEIGHT);
+            hex.addPoint((int) (radius / 2), HEIGHT);
+            hex.addPoint(0, HEIGHT /2);
             return hex;
         }
-
-
-        private static final int originX = -40;
-        private static final int originY = -40;
 
         @Override
         public void paintComponent(Graphics g) {
@@ -70,7 +61,15 @@ public  class HexagonButton extends JButton implements MouseListener {
             ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             g.setColor(HintUtil.getColor(this.row , this.col));
-            g.fillPolygon(this.getPolygon(originX, originY, radius));
+            g.fillPolygon(this.getPolygon(radius));
+            if (piece != null && !piece.getValue().trim().isEmpty()){
+                g.setColor(Color.BLACK);
+                g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+                FontMetrics fm = g.getFontMetrics();
+                int x = (getWidth() - fm.stringWidth(piece.getValue())) / 2;
+                int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+                g.drawString(piece.getValue(), x, y);
+            }
         }
 
     public int getStartX() {
@@ -89,12 +88,12 @@ public  class HexagonButton extends JButton implements MouseListener {
         this.startY = startY;
     }
 
-    public int getLENGTH() {
-        return LENGTH;
-    }
-
     public int getWIDTH() {
         return WIDTH;
+    }
+
+    public int getHEIGHT() {
+        return HEIGHT;
     }
 
     public int getRadius() {
@@ -115,6 +114,14 @@ public  class HexagonButton extends JButton implements MouseListener {
 
     public void setRow(int row) {
         this.row = row;
+    }
+
+    public GraphicalPiece getPiece() {
+        return piece;
+    }
+
+    public void setPiece(GraphicalPiece piece) {
+        this.piece = piece;
     }
 
     @Override

@@ -1,18 +1,16 @@
 package ir.sharif.math.bp02_1.hex_chess.model.pieces;
 
 import ir.sharif.math.bp02_1.hex_chess.model.Tile;
-import ir.sharif.math.bp02_1.hex_chess.model.Player;
-
-import java.awt.*;
 
 public class Piece {
     private Tile currentTile;
+    private String value;
     private String name;
     private boolean isSelected;
 
 
-    public Piece(String name) {
-        this.name = name;
+    public Piece(String value) {
+        this.value = value;
     }
 
     public Tile getCurrentCell() {
@@ -37,6 +35,14 @@ public class Piece {
 
     public void setCurrentTile(Tile currentTile) {
         this.currentTile = currentTile;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public String getName() {

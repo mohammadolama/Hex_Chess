@@ -6,37 +6,38 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.ImageLoader;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class GraphicalPiece extends GraphicalModel {
-    private final GraphicalColor color;
-    private final BufferedImage image;
-    private final int id;
+public class GraphicalPiece {
+    private BufferedImage image;
+
+    private final String name;
+    private final String value;
     private final boolean isSelected;
 
-//    public GraphicalPiece(GraphicalColor color, boolean isSelected) {
-//        this.color = color;
-//        image = ImageLoader.getImage(color.toString().toLowerCase());
-//        this.isSelected = isSelected;
-//
-//  }
-
-
-    public GraphicalPiece(GraphicalColor color, int id, boolean isSelected) {
-        this.color = color;
-        this.id = id;
+    public GraphicalPiece(String name, String value , boolean isSelected) {
+        this.name = name;
+        this.value = value;
         this.isSelected = isSelected;
-        image = ImageLoader.getImage(color.toString().toLowerCase() + id);
+//        image = ImageLoader.getImage(color.toString().toLowerCase() + id);
     }
 
-    public GraphicalColor getColor() {
-        return color;
+    public String getName() {
+        return name;
+    }
+
+    public String getValue() {
+        return value;
     }
 
     public BufferedImage getImage() {
         return image;
     }
 
-    @Override
-    public void paint(Graphics2D graphics2D) {
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
 
+
+    public boolean isSelected() {
+        return isSelected;
     }
 }
