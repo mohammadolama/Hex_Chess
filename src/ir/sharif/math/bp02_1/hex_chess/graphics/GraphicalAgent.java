@@ -46,17 +46,8 @@ public class GraphicalAgent {
         return frame;
     }
 
-    public void diceRequest(int playerNumber) {
-        logicalAgent.rollDice(playerNumber);
-    }
-
-    public void showDiceDetails(int playerNumber) {
-        String details = logicalAgent.getDiceDetail(playerNumber);
-        JOptionPane.showMessageDialog(frame, details, "dice details", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    public void clickRequest(int x, int y) {
-        logicalAgent.selectCell(x, y);
+    public void clickRequest(int row, char col) {
+        logicalAgent.selectCell(row, col);
         /*
          *  TO DO
          *  WE SEND X , Y TO LOGIC, LOGIC SHOULD DECIDE WEATHER WE CHOOSE
@@ -69,29 +60,6 @@ public class GraphicalAgent {
          */
     }
 
-    public void changeColorRequest(int player, int piece, String color) {
-        /*
-         * TO DO
-         * SEND A REQUEST TO LOGIC THAT PLAYER # WANT TO CHANGE THE COLOR OF
-         * ONE OF HIS PIECES .
-         *
-         *
-         * NOT FORGOT TO UPDATE THE GRAPHIC AFTER THIS REQUEST.
-         */
-    }
-
-    public void requestStart(int playerNumber) {
-        logicalAgent.readyPlayer(playerNumber);
-    }
-
-    public void requestEndTurn(int playerNumber) {
-        /*
-         * TO DO
-         * SEND A REQUEST TO LOGIC THAT PLAYER # Turn is ended and switch the turns
-         *
-         * NOT FORGOT TO UPDATE THE GRAPHIC AFTER THIS REQUEST.
-         **/
-    }
 
     public Object getPaintLock() {
         return paintLock;

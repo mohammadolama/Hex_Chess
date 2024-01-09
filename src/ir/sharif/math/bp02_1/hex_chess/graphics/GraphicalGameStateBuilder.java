@@ -16,6 +16,8 @@ import java.util.List;
 public class GraphicalGameStateBuilder {
     private final GameState logicalGameState;
 
+    private GraphicalAgent graphicalAgent;
+
     private int tileRadius;
     private int tileWidth;
     private int tileLength;
@@ -26,6 +28,7 @@ public class GraphicalGameStateBuilder {
 
     public GraphicalGameStateBuilder(GameState gameState, GraphicalAgent agent) {
         this.logicalGameState = gameState;
+        this.graphicalAgent = agent;
         config();
     }
 
@@ -60,7 +63,7 @@ public class GraphicalGameStateBuilder {
         }
 
         for (Tile tile : tiles) {
-            HexagonButton hexagonButton = new HexagonButton(tile.getRow(), tile.getCol() , tileRadius , tileLength , tileWidth , startX , startY);
+            HexagonButton hexagonButton = new HexagonButton(tile.getRow(), tile.getCol() , tileRadius , tileLength , tileWidth , startX , startY , graphicalAgent);
             if (tile.getPiece()!=null){
                 hexagonButton.setPiece(convertPiece(tile.getPiece()));
             }
@@ -89,8 +92,7 @@ public class GraphicalGameStateBuilder {
     }
 
     private GraphicalPiece convertPiece(Piece piece){
-        GraphicalPiece graphicalPiece = new GraphicalPiece(piece.getName() , piece.getValue() , piece.isSelected());
-        return graphicalPiece;
+        return new GraphicalPiece(piece.getName() , piece.getValue() , piece.isSelected() , piece.isCanBeAttacked());
     }
 
 

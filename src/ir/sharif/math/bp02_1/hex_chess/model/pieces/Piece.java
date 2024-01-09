@@ -2,15 +2,21 @@ package ir.sharif.math.bp02_1.hex_chess.model.pieces;
 
 import ir.sharif.math.bp02_1.hex_chess.model.Tile;
 
-public class Piece {
-    private Tile currentTile;
+public abstract class Piece implements Movable {
     private String value;
     private String name;
+    boolean white;
+    private Tile currentTile;
     private boolean isSelected;
+    private boolean canBeAttacked;
 
-
-    public Piece(String value) {
+    protected Piece(String value, String name, boolean white, Tile currentTile, boolean isSelected, boolean canBeAttacked) {
         this.value = value;
+        this.name = name;
+        this.white = white;
+        this.currentTile = currentTile;
+        this.isSelected = isSelected;
+        this.canBeAttacked = canBeAttacked;
     }
 
     public Tile getCurrentCell() {
@@ -53,27 +59,12 @@ public class Piece {
         this.name = name;
     }
 
-    /**
-     * @return "true" if your movement is valid  , else return " false"
-     * <p>
-     * In this method, you should check if the movement is valid of not.
-     * <p>
-     * You can use some methods ( they are recommended )
-     * <p>
-     * 1) "canEnter" method in class "Cell"
-     * <p>
-     * if your movement is valid, return "true" , else return " false"
-     */
-    public boolean isValidMove(Tile destination, int diceNumber) {
-
-
-        return false;
+    public boolean isCanBeAttacked() {
+        return canBeAttacked;
     }
 
-    /**
-     * @param destination move selected piece from "currentCell" to "destination"
-     */
-    public void moveTo(Tile destination) {
-
+    public void setCanBeAttacked(boolean canBeAttacked) {
+        this.canBeAttacked = canBeAttacked;
     }
+
 }

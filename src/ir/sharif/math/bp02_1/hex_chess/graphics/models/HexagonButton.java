@@ -1,5 +1,6 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 
+import ir.sharif.math.bp02_1.hex_chess.graphics.GraphicalAgent;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 
 import javax.swing.*;
@@ -19,8 +20,9 @@ public  class HexagonButton extends JButton implements MouseListener {
 
         private GraphicalPiece piece;
 
+        private GraphicalAgent graphicalAgent;
 
-        public HexagonButton(int row, char col, int radius , int width , int height , int startX , int starY) {
+        public HexagonButton(int row, char col, int radius , int width , int height , int startX , int starY, GraphicalAgent graphicalAgent) {
             this.row = row;
             this.col = col;
             this.radius = radius;
@@ -28,6 +30,7 @@ public  class HexagonButton extends JButton implements MouseListener {
             this.HEIGHT = height;
             this.startX = startX;
             this.startY = starY;
+            this.graphicalAgent = graphicalAgent;
             setContentAreaFilled(false);
             setFocusPainted(true);
             setBorderPainted(false);
@@ -60,7 +63,13 @@ public  class HexagonButton extends JButton implements MouseListener {
             super.paintComponent(g);
             ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             ((Graphics2D) g).setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-            g.setColor(HintUtil.getColor(this.row , this.col));
+            if (piece.isCanBeAttacked()){
+                g.setColor(Color.RED);
+            } else if (piece.isSelected()) {
+                g.setColor(Color.GREEN);
+            }else {
+                g.setColor(HintUtil.getColor(this.row , this.col));
+            }
             g.fillPolygon(this.getPolygon(radius));
             if (piece != null && !piece.getValue().trim().isEmpty()){
                 g.setColor(Color.BLACK);
@@ -126,7 +135,7 @@ public  class HexagonButton extends JButton implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("Clicked on button " + col+row);
+        graphicalAgent.clickRequest(this.row , this.col);
     }
 
     @Override

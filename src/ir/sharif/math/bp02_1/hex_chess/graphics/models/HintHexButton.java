@@ -7,7 +7,7 @@ public class HintHexButton extends HexagonButton {
     private String hintLabel="";
 
     public HintHexButton(int row, char col, int radius, int length, int width, int startX, int starY) {
-        super(row, col, radius, length, width, startX, starY);
+        super(row, col, radius, length, width, startX, starY, null);
         setVisible(true);
         this.removeMouseListener(this);
     }

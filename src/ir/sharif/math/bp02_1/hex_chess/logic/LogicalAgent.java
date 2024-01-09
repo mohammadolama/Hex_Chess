@@ -5,6 +5,7 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.GraphicalAgent;
 import ir.sharif.math.bp02_1.hex_chess.model.Board;
 import ir.sharif.math.bp02_1.hex_chess.model.GameState;
 import ir.sharif.math.bp02_1.hex_chess.model.Player;
+import ir.sharif.math.bp02_1.hex_chess.model.Tile;
 
 /**
  * This class is an interface between logic and graphic.
@@ -59,8 +60,12 @@ public class LogicalAgent {
      * or already selected a piece and now want to move it to a new cell
      */
     // ***
-    public void selectCell(int x, int y) {
+    public void selectCell(int row, char col) {
 
+        Tile cell = gameState.getBoard().getCell(row, col);
+        if (cell.getPiece() != null){
+            cell.getPiece().setSelected(!cell.getPiece().isSelected());
+        }
 
         // dont touch this line
         graphicalAgent.update(gameState);
@@ -68,8 +73,8 @@ public class LogicalAgent {
     }
 
 
-    public String getCellDetails(int x, int y) {
-        return "cell at " + x + "," + y;
+    public String getCellDetails(int row, char col) {
+        return "cell at " + col + " " + row;
     }
 
     /**
@@ -97,27 +102,4 @@ public class LogicalAgent {
         }
     }
 
-
-    /**
-     * Give a number from graphic,( which is the playerNumber of a player
-     * who left clicks "dice button".) you should roll his/her dice
-     * and update *****************
-     */
-    public void rollDice(int playerNumber) {
-
-
-        // dont touch this line
-        graphicalAgent.update(gameState);
-    }
-
-
-    /**
-     * Give a number from graphic,( which is the playerNumber of a player
-     * who right clicks "dice button".) you should return the dice detail of that player.
-     * you can use method "getDetails" in class "Dice"(not necessary, but recommended )
-     */
-    public String getDiceDetail(int playerNumber) {
-
-        return null;
-    }
 }

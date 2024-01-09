@@ -12,17 +12,16 @@ public class Board {
     public Board(List<Tile> tiles) {
         this.tiles = tiles;
     }
-
-
     public List<Tile> getTiles() {
         return tiles;
     }
 
-    /**
-     * give x,y , return a cell with that coordinates
-     * return null if not exist.
-     */
-    public Tile getCell(int x, int y) {
+    public Tile getCell(int row, char col) {
+        for (Tile tile : tiles) {
+            if (tile.getRow() == row && tile.getCol() == col){
+                return tile;
+            }
+        }
         return null;
     }
 }

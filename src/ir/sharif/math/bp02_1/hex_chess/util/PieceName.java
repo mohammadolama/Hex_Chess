@@ -1,8 +1,6 @@
-package ir.sharif.math.bp02_1.hex_chess.model.pieces;
+package ir.sharif.math.bp02_1.hex_chess.util;
 
-import java.util.PrimitiveIterator;
-
-public class Name {
+public class PieceName {
 
     public static final String WHITE_ROCK = "\u2656";
     public static final String WHITE_KNIGHT = "\u2658";

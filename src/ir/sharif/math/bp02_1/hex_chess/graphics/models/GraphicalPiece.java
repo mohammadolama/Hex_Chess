@@ -11,13 +11,14 @@ public class GraphicalPiece {
 
     private final String name;
     private final String value;
-    private final boolean isSelected;
+    private boolean isSelected;
+    private boolean canBeAttacked;
 
-    public GraphicalPiece(String name, String value , boolean isSelected) {
+    public GraphicalPiece(String name, String value , boolean isSelected, boolean canBeAttacked) {
         this.name = name;
         this.value = value;
         this.isSelected = isSelected;
-//        image = ImageLoader.getImage(color.toString().toLowerCase() + id);
+        this.canBeAttacked = canBeAttacked;
     }
 
     public String getName() {
@@ -39,5 +40,17 @@ public class GraphicalPiece {
 
     public boolean isSelected() {
         return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public boolean isCanBeAttacked() {
+        return canBeAttacked;
+    }
+
+    public void setCanBeAttacked(boolean canBeAttacked) {
+        this.canBeAttacked = canBeAttacked;
     }
 }
