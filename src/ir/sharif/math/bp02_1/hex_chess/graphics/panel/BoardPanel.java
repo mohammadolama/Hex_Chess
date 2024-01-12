@@ -14,7 +14,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardPanel extends JPanel implements MouseListener {
+public class BoardPanel extends JPanel {
     final int boardLeftShift = 150;
     final int boardTopShift = 48;
     final int boardBorderWidth = 3;
