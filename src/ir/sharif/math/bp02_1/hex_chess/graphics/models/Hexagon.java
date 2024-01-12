@@ -55,6 +55,14 @@ public abstract class Hexagon implements Paintable {
                 '}';
     }
 
+    protected void drawTextOnCenter(Graphics2D g2, Polygon p, String text) {
+        FontMetrics fm = g2.getFontMetrics();
+        double x = p.getBounds().getX() + (p.getBounds().getWidth() - fm.stringWidth(text)) / 2;
+        double y = p.getBounds().getY() + ((p.getBounds().getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+        g2.drawString(text, (int)Math.round(x), (int)Math.round(y));
+
+    }
+
     @Override
     public abstract void paint(Graphics2D g2);
 }

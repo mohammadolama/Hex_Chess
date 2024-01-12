@@ -14,11 +14,8 @@ public class HexagonHint extends Hexagon implements Paintable {
         Polygon p = this.getPolygon();
 
         g2.setColor(Color.BLACK);
-        g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-        FontMetrics fm = g2.getFontMetrics();
-        double x = p.getBounds().getX() + (p.getBounds().getWidth() - fm.stringWidth(hintLabel)) / 2;
-        double y = p.getBounds().getY() + ((p.getBounds().getHeight() - fm.getHeight()) / 2) + fm.getAscent();
-        g2.drawString(hintLabel, (int)Math.round(x), (int)Math.round(y));
+        g2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+        drawTextOnCenter(g2, p, hintLabel);
     }
 
 

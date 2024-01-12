@@ -4,6 +4,7 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.DummyEventListener;
 import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.EventListener;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonCell;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonHint;
+import ir.sharif.math.bp02_1.hex_chess.graphics.models.Paintable;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 
 import javax.swing.*;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardPanel extends JPanel {
-    final int boardLeftShift = 200;
-    final int boardTopShift = 20;
-    final int boardBorderWidth = 2;
+    final int boardLeftShift = 150;
+    final int boardTopShift = 48;
+    final int boardBorderWidth = 3;
 
     private final List<HexagonCell> cells;
     private final List<HexagonHint> hints;
@@ -26,13 +27,14 @@ public class BoardPanel extends JPanel {
         setLayout(null);
         setBackground(Color.decode("#f7f7f7"));
 
-        cells = new ArrayList<>();
-        initialBaseBoard();
         this.addMouseListener(new BoardMouseListener());
         this.eventListener = new DummyEventListener();
 
+        cells = new ArrayList<>();
+        initialBaseBoard();
+
         hints = new ArrayList<>();
-        // TODO: hint ha ro por konim!
+        initializeHints();
     }
 
     private void initialBaseBoard() {
@@ -52,6 +54,27 @@ public class BoardPanel extends JPanel {
                 }
             }
         }
+    }
+
+    private void initializeHints() {
+        int moreShift = 5;
+        for (int i = 1; i < 7; i++) {
+            hints.add(new HexagonHint(i, 'z', boardLeftShift + moreShift, boardTopShift, "" + i));
+        }
+
+        Character[] chars = HintUtil.getChars();
+        for (Character aChar : chars) {
+            int col = HintUtil.getCol(aChar);
+            if (col <= 6) {
+                hints.add(new HexagonHint(0, aChar, boardLeftShift, boardTopShift - moreShift, "" + aChar));
+                if (col <= 5) {
+                    hints.add(new HexagonHint(6 + col, aChar, boardLeftShift + moreShift, boardTopShift + moreShift, "" + (6 + col)));
+                }
+            } else {
+                hints.add(new HexagonHint(col - 6, aChar , boardLeftShift - moreShift , boardTopShift - moreShift, "" + aChar));
+            }
+        }
+
     }
 
     @Override
@@ -76,7 +99,10 @@ public class BoardPanel extends JPanel {
         }
 
         // foreground board
-        for (HexagonCell cell : cells) {
+        for (Paintable cell : cells) {
+            cell.paint(g2);
+        }
+        for (Paintable cell : hints) {
             cell.paint(g2);
         }
     }
