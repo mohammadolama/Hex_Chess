@@ -9,8 +9,11 @@ import java.util.Map;
 public class Board {
     private final List<Tile> tiles;
 
+    private Tile selectedTile;
+
     public Board(List<Tile> tiles) {
         this.tiles = tiles;
+        selectedTile = null;
     }
     public List<Tile> getTiles() {
         return tiles;
@@ -23,5 +26,13 @@ public class Board {
             }
         }
         return null;
+    }
+
+    public Tile getSelectedTile() {
+        return selectedTile;
+    }
+
+    public void setSelectedTile(Tile selectedTile) {
+        this.selectedTile = selectedTile;
     }
 }

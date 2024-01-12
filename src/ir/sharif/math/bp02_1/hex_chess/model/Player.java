@@ -18,7 +18,9 @@ public class Player {
     private int moveLeft;
     private Piece selectedPiece;
 
-    public Player(String name, int score, int id, int playerNumber) {
+    private Side side;
+
+    public Player(String name, int score, int id, int playerNumber,Side side) {
         this.name = name;
         this.score = score;
         this.id = id;
@@ -26,6 +28,7 @@ public class Player {
         this.pieces = new ArrayList<>();
         this.moveLeft = 0;
         this.selectedPiece = null;
+        this.side = side;
     }
 
     public int getId() {
@@ -100,5 +103,8 @@ public class Player {
         isReady = ready;
     }
 
+    public Side getSide() {
+        return side;
+    }
 }
 

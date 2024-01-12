@@ -2,10 +2,7 @@ package ir.sharif.math.bp02_1.hex_chess.logic;
 
 
 import ir.sharif.math.bp02_1.hex_chess.graphics.GraphicalAgent;
-import ir.sharif.math.bp02_1.hex_chess.model.Board;
-import ir.sharif.math.bp02_1.hex_chess.model.GameState;
-import ir.sharif.math.bp02_1.hex_chess.model.Player;
-import ir.sharif.math.bp02_1.hex_chess.model.Tile;
+import ir.sharif.math.bp02_1.hex_chess.model.*;
 
 /**
  * This class is an interface between logic and graphic.
@@ -32,7 +29,9 @@ public class LogicalAgent {
      */
     private GameState loadGameState() {
         Board board = modelLoader.loadBord();
-        return new GameState(board, null, null);
+        Player player1 = new Player("karim",0,0,0, Side.BLACK);
+        Player player2 = new Player("Mohsen",0,1,1,Side.WHITE);
+        return new GameState(board, player1, player2);
     }
 
     /**
@@ -64,7 +63,13 @@ public class LogicalAgent {
 
         Tile cell = gameState.getBoard().getCell(row, col);
         if (cell.getPiece() != null){
-            cell.getPiece().setSelected(!cell.getPiece().isSelected());
+            if (cell.getPiece().getSide()==(gameState.getCurrentPlayer().getPlayerNumber())) {
+                if (gameState.getBoard().getSelectedTile() != null) {
+                    gameState.getBoard().getSelectedTile().getPiece().setSelected(!gameState.getBoard().getSelectedTile().getPiece().isSelected());
+                }
+                gameState.getBoard().setSelectedTile(cell);
+                gameState.getBoard().getSelectedTile().getPiece().setSelected(!gameState.getBoard().getSelectedTile().getPiece().isSelected());
+            }
         }
 
         // dont touch this line

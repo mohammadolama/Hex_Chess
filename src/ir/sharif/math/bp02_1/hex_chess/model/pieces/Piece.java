@@ -1,11 +1,13 @@
 package ir.sharif.math.bp02_1.hex_chess.model.pieces;
 
+import ir.sharif.math.bp02_1.hex_chess.model.Side;
 import ir.sharif.math.bp02_1.hex_chess.model.Tile;
 
 public abstract class Piece implements Movable {
     private String value;
     private String name;
-    boolean white;
+
+    private int side;
     private Tile currentTile;
     private boolean isSelected;
     private boolean canBeAttacked;
@@ -13,7 +15,7 @@ public abstract class Piece implements Movable {
     protected Piece(String value, String name, boolean white, Tile currentTile, boolean isSelected, boolean canBeAttacked) {
         this.value = value;
         this.name = name;
-        this.white = white;
+        this.side = white ? 0 : 1;
         this.currentTile = currentTile;
         this.isSelected = isSelected;
         this.canBeAttacked = canBeAttacked;
@@ -67,4 +69,7 @@ public abstract class Piece implements Movable {
         this.canBeAttacked = canBeAttacked;
     }
 
+    public int getSide() {
+        return this.side;
+    }
 }

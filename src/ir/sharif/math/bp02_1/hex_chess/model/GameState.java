@@ -4,13 +4,17 @@ public class GameState {
     private final Board board;
     private final Player player1;
     private final Player player2;
-    private int turn;
+
+    private final Player currentPlayer;
+
+    private final boolean hasStarted;
 
     public GameState(Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
-        turn = 0;
+        this.currentPlayer = player1;
+        this.hasStarted = false;
     }
 
     public Board getBoard() {
@@ -32,31 +36,23 @@ public class GameState {
     }
 
     public boolean isStarted() {
-        return turn != 0;
+        return hasStarted;
     }
-
-    public int getTurn() {
-        return turn;
-    }
-
 
     /**
      * return null if game is not started.
-     * else return a player who's turn is now.
+     * else return a player whose turn is now.
      */
     public Player getCurrentPlayer() {
-
-
-        return null;
+        return currentPlayer;
     }
 
 
     /**
      * finish current player's turn and update some fields of this class;
-     * you can use method "endTurn" in class "Player" (not necessary, but recommanded)
+     * you can use method "endTurn" in class "Player" (not necessary, but recommended)
      */
     public void nextTurn() {
-
 
     }
 
@@ -67,7 +63,6 @@ public class GameState {
                 "board=" + board +
                 ", playerOne=" + player1 +
                 ", playerTwo=" + player2 +
-                ", turn=" + turn +
                 '}';
     }
 }
