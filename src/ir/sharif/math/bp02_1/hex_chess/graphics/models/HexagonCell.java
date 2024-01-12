@@ -32,6 +32,6 @@ public class HexagonCell extends Hexagon implements Paintable {
 
         g2.setColor(Color.BLACK);
         g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        PaintUtils.drawTextOnCenter(g2, p.getBounds(), text);
+        drawTextOnCenter(g2, p, text, Color.WHITE);
     }
 }
