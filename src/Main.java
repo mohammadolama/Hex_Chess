@@ -1,9 +1,10 @@
 import ir.sharif.math.bp02_1.hex_chess.graphics.Application;
+import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.SystemOutEventListener;
 
 public class Main {
     public static void main(String[] args) {
-        new Application();
-
+        Application application = new Application();
+        application.registerEventListener(new SystemOutEventListener());
 
         // app.setCellProperties('f', 11, SARBAZE_SIAH, RED);
         // app.setBottomMessage("نوبت سیاه!")
