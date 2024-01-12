@@ -6,30 +6,29 @@ import java.util.Collections;
 import java.util.HashMap;
 
 public class HintUtil {
-
-    private static HashMap<Character , Integer> map=new HashMap<>();
+    private static final HashMap<Character, Integer> map = new HashMap<>();
 
     static {
-        for (int i = (int)'a'; i < (int)'j'; i++) {
-            map.put((char)i , i-((int)'a')+1);
+        for (int i = 'a'; i < (int) 'j'; i++) {
+            map.put((char) i, i - ((int) 'a') + 1);
         }
-        map.put('k' , 10);
-        map.put('l' , 11);
-        map.put('z' , 0);
-        map.put('x' , 12);
+        map.put('k', 10);
+        map.put('l', 11);
+        map.put('z', 0);
+        map.put('x', 12);
     }
 
-    private static final Color[] colors = {  Color.decode("#e8ab6f"), Color.decode("#ffce9e"), Color.decode("#d18b47")};
+    private static final Color[] colors = {Color.decode("#e8ab6f"), Color.decode("#ffce9e"), Color.decode("#d18b47")};
 
-    public static Color getColor(int i , char c){
+    public static Color getColor(int i, char c) {
         return colors[((i + map.get(c)) % 3 + 3) % 3];
     }
 
-    public static int getCol(char c){
+    public static int getCol(char c) {
         return map.get(c);
     }
 
-    public static Character[] getChars(){
+    public static Character[] getChars() {
         ArrayList<Character> l = new ArrayList<>(map.keySet());
         l.remove(Character.valueOf('z'));
         l.remove(Character.valueOf('x'));

@@ -1,5 +1,7 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.PaintUtils;
+
 import java.awt.*;
 
 public class HexagonHint extends Hexagon implements Paintable {
@@ -15,7 +17,7 @@ public class HexagonHint extends Hexagon implements Paintable {
 
         g2.setColor(Color.BLACK);
         g2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-        drawTextOnCenter(g2, p, hintLabel);
+        PaintUtils.drawTextOnCenter(g2, p.getBounds(), hintLabel);
     }
 
 

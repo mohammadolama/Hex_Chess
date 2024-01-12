@@ -14,7 +14,6 @@ public abstract class Hexagon implements Paintable {
     public Hexagon(int row, char col, int startX, int startY) {
         this.row = row;
         this.col = col;
-
         this.startX = startX;
         this.startY = startY;
     }
@@ -23,10 +22,10 @@ public abstract class Hexagon implements Paintable {
     public Polygon getPolygon() {
         double height = (Math.sin(Math.PI / 3) * Config.CELL_SIZE * 2);
         int iCol = HintUtil.getCol(col);
-        double x = startX + ((3 * Config.CELL_SIZE / 2.0) * (HintUtil.getCol(col) - 1));
+        double x = startX + ((3 * Config.CELL_SIZE / 2.0) * (iCol - 1));
         double y = startY + height * 8;
-        y += (height / 2) * (HintUtil.getCol(col) <= 6 ? (HintUtil.getCol(col) - 1) : (11 - HintUtil.getCol(col)));
-        y -= height * (HintUtil.getCol(col) <= 6 ? (row - 1) : (5 - (HintUtil.getCol(col) - row)));
+        y += (height / 2) * (iCol <= 6 ? (iCol - 1) : (11 - iCol));
+        y -= height * (iCol <= 6 ? (row - 1) : (5 - (iCol - row)));
 
         Polygon hex = new Polygon();
         for (int i = 0, deg = 90; i < 6; i++, deg += 60) {
@@ -53,14 +52,6 @@ public abstract class Hexagon implements Paintable {
                 "row=" + row +
                 ", col=" + col +
                 '}';
-    }
-
-    protected void drawTextOnCenter(Graphics2D g2, Polygon p, String text) {
-        FontMetrics fm = g2.getFontMetrics();
-        double x = p.getBounds().getX() + (p.getBounds().getWidth() - fm.stringWidth(text)) / 2;
-        double y = p.getBounds().getY() + ((p.getBounds().getHeight() - fm.getHeight()) / 2) + fm.getAscent();
-        g2.drawString(text, (int)Math.round(x), (int)Math.round(y));
-
     }
 
     @Override

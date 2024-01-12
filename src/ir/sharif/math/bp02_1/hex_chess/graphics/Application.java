@@ -4,6 +4,7 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.EventListener;
 import ir.sharif.math.bp02_1.hex_chess.graphics.panel.BoardPanel;
 import ir.sharif.math.bp02_1.hex_chess.graphics.panel.RemovedPiecesPanel;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Application {
@@ -20,11 +21,20 @@ public class Application {
         this.mainFrame.getContentPane().add(removedPiecesPanel, BorderLayout.LINE_END);
 
         this.mainFrame.setVisible(true);
+        boardPanel.initialize();
     }
 
     public void registerEventListener(EventListener eventListener) {
         boardPanel.setEventListener(eventListener);
         mainFrame.setEventListener(eventListener);
+    }
+
+    public void setCellProperties(int row, char col, String text, Color color) {
+        boardPanel.setCellProperties(row, col, text, color);
+    }
+
+    public void showMessage(String text) {
+        JOptionPane.showMessageDialog(mainFrame, text);
     }
 
 }

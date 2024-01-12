@@ -5,7 +5,9 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.EventListener;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonCell;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonHint;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.Paintable;
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.PaintUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,12 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BoardPanel extends JPanel {
-    final int boardLeftShift = 150;
+    private int boardLeftShift = 150;
     final int boardTopShift = 48;
     final int boardBorderWidth = 3;
 
     private final List<HexagonCell> cells;
     private final List<HexagonHint> hints;
+    private String message;
     private EventListener eventListener;
 
     public BoardPanel() {
@@ -31,9 +34,18 @@ public class BoardPanel extends JPanel {
         this.eventListener = new DummyEventListener();
 
         cells = new ArrayList<>();
-        initialBaseBoard();
+
 
         hints = new ArrayList<>();
+
+        message = "shit";
+    }
+
+    public void initialize() {
+        boardLeftShift = (getWidth() - (15 * Config.CELL_SIZE)) / 2;
+        System.out.println(getWidth());
+        System.out.println(boardBorderWidth);
+        initialBaseBoard();
         initializeHints();
     }
 
@@ -71,7 +83,7 @@ public class BoardPanel extends JPanel {
                     hints.add(new HexagonHint(6 + col, aChar, boardLeftShift + moreShift, boardTopShift + moreShift, "" + (6 + col)));
                 }
             } else {
-                hints.add(new HexagonHint(col - 6, aChar , boardLeftShift - moreShift , boardTopShift - moreShift, "" + aChar));
+                hints.add(new HexagonHint(col - 6, aChar, boardLeftShift - moreShift, boardTopShift - moreShift, "" + aChar));
             }
         }
 
@@ -105,10 +117,36 @@ public class BoardPanel extends JPanel {
         for (Paintable cell : hints) {
             cell.paint(g2);
         }
+
+        Rectangle rectangle = new Rectangle(getX(), getHeight() - 100, getWidth(), 100);
+        PaintUtils.drawTextOnCenter(g2, rectangle, message);
     }
 
     public void setEventListener(EventListener eventListener) {
         this.eventListener = eventListener;
+    }
+
+    public void setCellProperties(int row, char col, String text, Color color) {
+        HexagonCell targetCell = findCell(row, col);
+        if (targetCell != null) {
+            targetCell.setText(text);
+            targetCell.setColor(color);
+        } else {
+            System.err.printf("cant find cel with row=%d, col=%c", row, col);
+        }
+    }
+
+    private HexagonCell findCell(int row, char col) {
+        for (HexagonCell cell : cells) {
+            if (cell.getRow() == row && cell.getCol() == col) {
+                return cell;
+            }
+        }
+        return null;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     private class BoardMouseListener implements MouseListener {
