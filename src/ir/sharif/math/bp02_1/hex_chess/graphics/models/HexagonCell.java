@@ -18,6 +18,6 @@ public class HexagonCell extends Hexagon implements Paintable {
 
         g2.setColor(Color.BLACK);
         g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        drawTextOnCenter(g2, p, "A");
+        drawTextOnCenter(g2, p, "A", Color.WHITE);
     }
 }

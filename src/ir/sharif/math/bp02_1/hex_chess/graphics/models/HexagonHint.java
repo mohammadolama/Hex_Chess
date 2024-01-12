@@ -15,7 +15,7 @@ public class HexagonHint extends Hexagon implements Paintable {
 
         g2.setColor(Color.BLACK);
         g2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-        drawTextOnCenter(g2, p, hintLabel);
+        drawTextOnCenter(g2, p, hintLabel, Color.BLACK);
     }
 
 

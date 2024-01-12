@@ -1,6 +1,7 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.FontStrokeDrawer;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 
 import java.awt.*;
@@ -55,11 +56,11 @@ public abstract class Hexagon implements Paintable {
                 '}';
     }
 
-    protected void drawTextOnCenter(Graphics2D g2, Polygon p, String text) {
+    protected void drawTextOnCenter(Graphics2D g2, Polygon p, String text, Color color) {
         FontMetrics fm = g2.getFontMetrics();
         double x = p.getBounds().getX() + (p.getBounds().getWidth() - fm.stringWidth(text)) / 2;
         double y = p.getBounds().getY() + ((p.getBounds().getHeight() - fm.getHeight()) / 2) + fm.getAscent();
-        g2.drawString(text, (int)Math.round(x), (int)Math.round(y));
+        FontStrokeDrawer.drawString(g2, text, (int)Math.round(x), (int)Math.round(y), color);
 
     }
 

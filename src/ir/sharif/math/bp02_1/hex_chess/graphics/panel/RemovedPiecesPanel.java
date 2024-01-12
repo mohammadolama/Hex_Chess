@@ -1,16 +1,15 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.panel;
 
+import ir.sharif.math.bp02_1.hex_chess.graphics.models.StringColor;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
-import ir.sharif.math.bp02_1.hex_chess.util.PieceName;
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.FontStrokeDrawer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class RemovedPiecesPanel extends JPanel {
-    private List<String> pieces;
+    private StringColor[] pieces = new StringColor[0];
 
     final int size = Config.CELL_SIZE * 2;
     final int countPerRow = 4;
@@ -18,13 +17,12 @@ public class RemovedPiecesPanel extends JPanel {
     public RemovedPiecesPanel() {
         setLayout(null);
         setBackground(Color.decode("#eeeeee"));
-        pieces = new ArrayList<>();
 
         repaint();
         setPreferredSize(new Dimension(size * countPerRow, 0));
     }
 
-    public void setPieces(List<String> pieces) {
+    public void setPieces(StringColor[] pieces) {
         this.pieces = pieces;
         repaint();
     }
@@ -33,15 +31,15 @@ public class RemovedPiecesPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.BLACK);
-        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
+        g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 48));
         FontMetrics fm = g.getFontMetrics();
-        List<String> paintPieces = pieces;
-        for (int i = 0; i < paintPieces.size(); i++) {
-            String p = paintPieces.get(i);
-            int x = size * (i % countPerRow) + (size - fm.stringWidth(p))/2;
-            int y = size * (1 + i / countPerRow) + (size - fm.getHeight())/2;
-            g.drawString(p, x, y);
+        StringColor[] paintPieces = pieces;
+        for (int i = 0; i < paintPieces.length; i++) {
+            StringColor p = paintPieces[i];
+            g.setColor(p.getColor());
+            int x = size * (i % countPerRow) + (size - fm.stringWidth(p.getText())) / 2;
+            int y = size * (1 + i / countPerRow) + (size - fm.getHeight()) / 2;
+            FontStrokeDrawer.drawString(g, p.getText(), x, y, p.getColor());
         }
     }
 }
