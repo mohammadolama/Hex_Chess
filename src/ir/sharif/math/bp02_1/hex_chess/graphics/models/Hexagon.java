@@ -60,7 +60,6 @@ public abstract class Hexagon implements Paintable {
         double x = p.getBounds().getX() + (p.getBounds().getWidth() - fm.stringWidth(text)) / 2;
         double y = p.getBounds().getY() + ((p.getBounds().getHeight() - fm.getHeight()) / 2) + fm.getAscent();
         FontStrokeDrawer.drawString(g2, text, (int)Math.round(x), (int)Math.round(y), color);
-
     }
 
     @Override

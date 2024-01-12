@@ -7,7 +7,6 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonHint;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.Paintable;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
-import ir.sharif.math.bp02_1.hex_chess.graphics.util.PaintUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,16 +28,11 @@ public class BoardPanel extends JPanel {
     public BoardPanel() {
         setLayout(null);
         setBackground(Color.decode("#f7f7f7"));
-
         this.addMouseListener(new BoardMouseListener());
         this.eventListener = new DummyEventListener();
-
         cells = new ArrayList<>();
-
-
         hints = new ArrayList<>();
-
-        message = "shit";
+        message = "";
     }
 
     public void initialize() {
@@ -51,7 +45,6 @@ public class BoardPanel extends JPanel {
 
     private void initialBaseBoard() {
         Character[] chars = HintUtil.getChars();
-
         for (Character aChar : chars) {
             int col = HintUtil.getCol(aChar);
             if (col <= 6) {
@@ -118,19 +111,25 @@ public class BoardPanel extends JPanel {
             cell.paint(g2);
         }
 
-        Rectangle rectangle = new Rectangle(getX(), getHeight() - 100, getWidth(), 100);
-        PaintUtils.drawTextOnCenter(g2, rectangle, message);
+        FontMetrics fm = g2.getFontMetrics();
+        int x = getX() + (getWidth() - fm.stringWidth(message)) / 2;
+        int y = getHeight() - 50 - ((fm.getHeight()) / 2) + fm.getAscent();
+        g2.drawString(message, x, y);
     }
 
     public void setEventListener(EventListener eventListener) {
         this.eventListener = eventListener;
     }
 
-    public void setCellProperties(int row, char col, String text, Color color) {
+    public void setCellProperties(int row, char col, String text, Color backGroundColor, Color textColor) {
         HexagonCell targetCell = findCell(row, col);
         if (targetCell != null) {
-            targetCell.setText(text);
-            targetCell.setColor(color);
+            if (text != null)
+                targetCell.setText(text);
+            if (backGroundColor != null)
+                targetCell.setBackGroundColor(backGroundColor);
+            if (textColor != null)
+                targetCell.setTextColor(textColor);
         } else {
             System.err.printf("cant find cel with row=%d, col=%c", row, col);
         }

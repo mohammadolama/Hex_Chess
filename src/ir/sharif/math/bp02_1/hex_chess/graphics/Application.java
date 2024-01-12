@@ -31,16 +31,27 @@ public class Application {
         mainFrame.setEventListener(eventListener);
     }
 
-    public void setCellProperties(int row, char col, String text, Color color) {
-        boardPanel.setCellProperties(row, col, text, color);
+    public void setCellProperties(int row, char col, String text, Color backGroundColor, Color textColor) {
+        boardPanel.setCellProperties(row, col, text, backGroundColor, textColor);
     }
 
-    public void showMessage(String text) {
+    public void setMessage(String text) {
+        boardPanel.setMessage(text);
+    }
+
+    public void showMessagePopup(String text) {
         JOptionPane.showMessageDialog(mainFrame, text);
     }
 
     public void setRemovedPieces(StringColor[] pieces) {
         this.removedPiecesPanel.setPieces(pieces);
+    }
+
+    public String showPromotionPopup() {
+        String[] options = new String[]{"Knight", "Bishop", "Rook", "Queen"};
+        return options[JOptionPane.showOptionDialog(mainFrame, "choose your piece", "Promotion",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                null, options, null)];
     }
 
 }

@@ -1,6 +1,5 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 
-import ir.sharif.math.bp02_1.hex_chess.graphics.util.PaintUtils;
 
 import java.awt.*;
 

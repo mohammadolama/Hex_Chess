@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 
 public class Frame extends JFrame {
     private static Frame instance;
@@ -43,8 +44,14 @@ public class Frame extends JFrame {
     }
 
     private void update() {
-        this.revalidate();
-        this.repaint();
+        try {
+            SwingUtilities.invokeAndWait(() -> {
+                this.revalidate();
+                this.repaint();
+            });
+        } catch (InterruptedException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addMenuBar() {
