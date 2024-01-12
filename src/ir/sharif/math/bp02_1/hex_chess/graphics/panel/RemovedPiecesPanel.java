@@ -19,24 +19,6 @@ public class RemovedPiecesPanel extends JPanel {
         setLayout(null);
         setBackground(Color.decode("#eeeeee"));
         pieces = new ArrayList<>();
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
-        pieces.add(PieceName.BLACK_PAWN);
-        pieces.add(PieceName.WHITE_QUEEN);
 
         repaint();
         setPreferredSize(new Dimension(size * countPerRow, 0));
