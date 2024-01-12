@@ -16,8 +16,8 @@ import java.util.List;
 
 public class BoardPanel extends JPanel {
     final int boardLeftShift = 200;
-    final int boardTopShift = 20;
-    final int boardBorderWidth = 2;
+    final int boardTopShift = 48;
+    final int boardBorderWidth = 3;
 
     private final List<HexagonCell> cells;
     private final List<HexagonHint> hints;
