@@ -19,7 +19,7 @@ public class HintUtil {
         map.put('x' , 12);
     }
 
-    private static final Color[] colors = {  new Color(0.9F, 0.9F, 0.9F), new Color(1.0F, 1.0F, 1.0F),  new Color(0.8F, 0.8F, 0.8F)};
+    private static final Color[] colors = {  Color.decode("#e8ab6f"), Color.decode("#ffce9e"), Color.decode("#d18b47")};
 
     public static Color getColor(int i , char c){
         return colors[((i + map.get(c)) % 3 + 3) % 3];

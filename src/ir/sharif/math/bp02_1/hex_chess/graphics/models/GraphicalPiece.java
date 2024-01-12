@@ -1,9 +1,6 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 
 
-import ir.sharif.math.bp02_1.hex_chess.graphics.ImageLoader;
-
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class GraphicalPiece {
