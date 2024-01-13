@@ -24,7 +24,7 @@ public class BoardPanel extends JPanel {
 
     public BoardPanel() {
         setLayout(null);
-        setBackground(Color.decode("#054719"));
+        setBackground(Color.decode("#52932f"));
         this.addMouseListener(new BoardMouseListener());
         this.eventListener = new DummyEventListener();
         cells = new CopyOnWriteArrayList<>();
