@@ -1,5 +1,6 @@
 package ir.sharif.math.bp02_1.hex_chess.graphics.models;
 
+import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 
 import java.awt.*;
@@ -12,9 +13,6 @@ public class HexagonCell extends Hexagon implements Paintable {
 
     public HexagonCell(int row, char col, int startX, int startY) {
         super(row, col, startX, startY);
-        this.text = "A";
-        this.backGroundColor = HintUtil.getColor(this.getRow(), this.getCol());
-        this.textColor = Color.WHITE;
     }
 
     public void setBackGroundColor(Color backGroundColor) {
@@ -29,14 +27,26 @@ public class HexagonCell extends Hexagon implements Paintable {
         this.textColor = textColor;
     }
 
+    public String getText() {
+        return text == null ? "" : text;
+    }
+
+    public Color getTextColor() {
+        return textColor == null ? Color.WHITE : textColor;
+    }
+
+    public Color getBackGroundColor() {
+        return backGroundColor == null ? HintUtil.getColor(this.getRow(), this.getCol()) : backGroundColor;
+    }
+
     @Override
     public void paint(Graphics2D g2) {
-        g2.setColor(backGroundColor);
+        g2.setColor(getBackGroundColor());
         Polygon p = this.getPolygon();
         g2.fillPolygon(p);
 
         g2.setColor(Color.BLACK);
-        g2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 30));
-        drawTextOnCenter(g2, p, text, textColor);
+        g2.setFont(Config.PIECE_FONT);
+        drawTextOnCenter(g2, p, getText(), getTextColor());
     }
 }

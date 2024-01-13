@@ -27,8 +27,10 @@ public class Application {
     }
 
     public void registerEventListener(EventListener eventListener) {
-        boardPanel.setEventListener(eventListener);
-        mainFrame.setEventListener(eventListener);
+        if (eventListener != null) {
+            boardPanel.setEventListener(eventListener);
+            mainFrame.setEventListener(eventListener);
+        }
     }
 
     public void setCellProperties(int row, char col, String text, Color backGroundColor, Color textColor) {
@@ -49,7 +51,7 @@ public class Application {
 
     public String showPromotionPopup() {
         String[] options = new String[]{"Knight", "Bishop", "Rook", "Queen"};
-        return options[JOptionPane.showOptionDialog(mainFrame, "choose your piece", "Promotion",
+        return options[JOptionPane.showOptionDialog(mainFrame, "Choose your piece ^-^", "Promotion",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
                 null, options, null)];
     }

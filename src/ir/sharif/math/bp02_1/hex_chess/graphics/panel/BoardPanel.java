@@ -4,7 +4,6 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.DummyEventListener;
 import ir.sharif.math.bp02_1.hex_chess.graphics.listeners.EventListener;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonCell;
 import ir.sharif.math.bp02_1.hex_chess.graphics.models.HexagonHint;
-import ir.sharif.math.bp02_1.hex_chess.graphics.models.Paintable;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.Config;
 import ir.sharif.math.bp02_1.hex_chess.graphics.util.HintUtil;
 
@@ -16,10 +15,8 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BoardPanel extends JPanel {
-    private int boardLeftShift = 150;
-    final int boardTopShift = 48;
-    final int boardBorderWidth = 3;
-
+    private int boardLeftShift;
+    private final int boardTopShift = 48;
     private final List<HexagonCell> cells;
     private final List<HexagonHint> hints;
     private String message;
@@ -27,7 +24,7 @@ public class BoardPanel extends JPanel {
 
     public BoardPanel() {
         setLayout(null);
-        setBackground(Color.decode("#f7f7f7"));
+        setBackground(Color.decode("#054719"));
         this.addMouseListener(new BoardMouseListener());
         this.eventListener = new DummyEventListener();
         cells = new CopyOnWriteArrayList<>();
@@ -86,26 +83,25 @@ public class BoardPanel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-
         // draw black board as board and background
         Stroke currentStroke = g2.getStroke();
+        int boardBorderWidth = 5;
         g2.setStroke(new BasicStroke(boardBorderWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
+        g.setColor(Color.decode("#080808"));
         for (HexagonCell cell : cells) {
-            g.setColor(Color.decode("#080808"));
             Polygon p = cell.getPolygon();
             g.drawPolygon(p);
         }
         g2.setStroke(currentStroke);
         // foreground board
-        for (Paintable cell : cells) {
-            cell.paint(g2);
-        }
-        for (Paintable cell : hints) {
-            cell.paint(g2);
-        }
+        cells.forEach(hexagonCell -> hexagonCell.paint(g2));
+        hints.forEach(hexagonHint -> hexagonHint.paint(g2));
+        // draw message
         FontMetrics fm = g2.getFontMetrics();
         int x = getX() + (getWidth() - fm.stringWidth(message)) / 2;
-        int y = getHeight() - 50 - ((fm.getHeight()) / 2) + fm.getAscent();
+        int messageBottomShift = 30;
+        int y = getHeight() - messageBottomShift - ((fm.getHeight()) / 2) + fm.getAscent();
+        g2.setColor(Color.WHITE);
         g2.drawString(message, x, y);
     }
 
@@ -116,12 +112,9 @@ public class BoardPanel extends JPanel {
     public void setCellProperties(int row, char col, String text, Color backGroundColor, Color textColor) {
         HexagonCell targetCell = findCell(row, col);
         if (targetCell != null) {
-            if (text != null)
-                targetCell.setText(text);
-            if (backGroundColor != null)
-                targetCell.setBackGroundColor(backGroundColor);
-            if (textColor != null)
-                targetCell.setTextColor(textColor);
+            targetCell.setText(text);
+            targetCell.setBackGroundColor(backGroundColor);
+            targetCell.setTextColor(textColor);
         } else {
             System.err.printf("cant find cel with row=%d, col=%c", row, col);
         }
