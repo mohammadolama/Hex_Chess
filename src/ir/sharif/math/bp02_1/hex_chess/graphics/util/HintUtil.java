@@ -21,7 +21,7 @@ public class HintUtil {
     private static final Color[] colors = {Color.decode("#e8ab6f"), Color.decode("#ffce9e"), Color.decode("#d18b47")};
 
     public static Color getColor(int i, char c) {
-        return colors[((map.get(c) <=6 ? i + map.get(c) : i - map.get(c)) % 3 + 3) % 3];
+        return colors[((map.get(c) <= 6 ? i + map.get(c) : i - map.get(c)) % 3 + 3) % 3];
     }
 
     public static int getCol(char c) {

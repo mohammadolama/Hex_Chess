@@ -2,7 +2,7 @@ package ir.sharif.math.bp02_1.hex_chess.graphics.listeners;
 
 import java.io.File;
 
-public class DummyEventListener implements EventListener{
+public class DummyEventListener implements EventListener {
     @Override
     public void onClick(int row, char col) {
 

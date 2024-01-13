@@ -8,7 +8,6 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.util.Loop;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
