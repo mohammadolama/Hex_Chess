@@ -90,19 +90,14 @@ public class BoardPanel extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         // draw black board as board and background
+        Stroke currentStroke = g2.getStroke();
+        g2.setStroke(new BasicStroke(boardBorderWidth, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
         for (HexagonCell cell : cells) {
             g.setColor(Color.decode("#080808"));
-            for (int dx = -boardBorderWidth; dx <= boardBorderWidth; dx += 1) {
-                for (int dy = -boardBorderWidth; dy <= boardBorderWidth; dy += 1) {
-                    if (dx * dx + dy * dy <= boardBorderWidth * boardBorderWidth) {
-                        Polygon p = cell.getPolygon();
-                        p.translate(dx, dy);
-                        g.fillPolygon(p);
-                    }
-                }
-            }
+            Polygon p = cell.getPolygon();
+            g.drawPolygon(p);
         }
-
+        g2.setStroke(currentStroke);
         // foreground board
         for (Paintable cell : cells) {
             cell.paint(g2);
@@ -110,7 +105,6 @@ public class BoardPanel extends JPanel {
         for (Paintable cell : hints) {
             cell.paint(g2);
         }
-
         FontMetrics fm = g2.getFontMetrics();
         int x = getX() + (getWidth() - fm.stringWidth(message)) / 2;
         int y = getHeight() - 50 - ((fm.getHeight()) / 2) + fm.getAscent();

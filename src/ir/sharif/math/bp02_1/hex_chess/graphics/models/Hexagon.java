@@ -11,16 +11,17 @@ public abstract class Hexagon implements Paintable {
     protected char col;
     protected final int startX;
     protected final int startY;
+    protected final Polygon polygon;
 
     public Hexagon(int row, char col, int startX, int startY) {
         this.row = row;
         this.col = col;
         this.startX = startX;
         this.startY = startY;
+        this.polygon = createPolygon();
     }
 
-
-    public Polygon getPolygon() {
+    private Polygon createPolygon() {
         double height = (Math.sin(Math.PI / 3) * Config.CELL_SIZE * 2);
         int iCol = HintUtil.getCol(col);
         double x = startX + ((3 * Config.CELL_SIZE / 2.0) * (iCol - 1));
@@ -37,6 +38,10 @@ public abstract class Hexagon implements Paintable {
 
         hex.translate((int) Math.round(x), (int) Math.round(y));
         return hex;
+    }
+
+    public Polygon getPolygon() {
+        return polygon;
     }
 
     public int getRow() {
