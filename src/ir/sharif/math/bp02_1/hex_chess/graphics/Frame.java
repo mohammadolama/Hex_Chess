@@ -33,7 +33,7 @@ public class Frame extends JFrame {
         setContentPane(new MainPanel());
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        new Loop(10, this::update).start();
+        new Loop(Config.FPS, this::update).start();
     }
 
     private void update() {

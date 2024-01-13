@@ -44,8 +44,6 @@ public class HexagonCell extends Hexagon implements Paintable {
         g2.setColor(getBackGroundColor());
         Polygon p = this.getPolygon();
         g2.fillPolygon(p);
-
-        g2.setColor(Color.BLACK);
         g2.setFont(Config.PIECE_FONT);
         drawTextOnCenter(g2, p, getText(), getTextColor());
     }

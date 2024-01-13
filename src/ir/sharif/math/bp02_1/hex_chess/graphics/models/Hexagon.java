@@ -27,14 +27,13 @@ public abstract class Hexagon implements Paintable {
         double y = startY + height * 8;
         y += (height / 2) * (iCol <= 6 ? (iCol - 1) : (11 - iCol));
         y -= height * (row - 1);
-
         Polygon hex = new Polygon();
         for (int i = 0, deg = 90; i < 6; i++, deg += 60) {
             hex.addPoint(
                     (int) Math.round(Config.CELL_SIZE * Math.sin(deg / 180.0 * Math.PI)),
-                    (int) Math.round(Config.CELL_SIZE * Math.cos(deg / 180.0 * Math.PI)));
+                    (int) Math.round(Config.CELL_SIZE * Math.cos(deg / 180.0 * Math.PI))
+            );
         }
-
         hex.translate((int) Math.round(x), (int) Math.round(y));
         return hex;
     }
@@ -53,10 +52,7 @@ public abstract class Hexagon implements Paintable {
 
     @Override
     public String toString() {
-        return "Hexagon{" +
-                "row=" + row +
-                ", col=" + col +
-                '}';
+        return "Hexagon{" + "row=" + row + ", col=" + col + '}';
     }
 
     protected void drawTextOnCenter(Graphics2D g2, Polygon p, String text, Color color) {

@@ -14,11 +14,8 @@ public class Main {
                 new StringColor(PieceName.BLACK_BISHOP, StringColor.BLACK),
                 new StringColor(PieceName.WHITE_BISHOP, StringColor.WHITE)
         });
-
         Thread.sleep(2000);
         application.setMessage("Hii");
-
-//        System.out.println(application.showPromotionPopup());
-
+        // add examples
     }
 }

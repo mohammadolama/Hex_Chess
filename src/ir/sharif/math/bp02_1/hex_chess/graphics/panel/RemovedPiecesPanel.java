@@ -15,14 +15,11 @@ public class RemovedPiecesPanel extends JPanel {
     public RemovedPiecesPanel() {
         setLayout(null);
         setBackground(Color.decode("#422a1e"));
-
-        repaint();
         setPreferredSize(new Dimension(size * countPerRow, 0));
     }
 
     public void setPieces(StringColor[] pieces) {
         this.pieces = pieces;
-        repaint();
     }
 
     @Override

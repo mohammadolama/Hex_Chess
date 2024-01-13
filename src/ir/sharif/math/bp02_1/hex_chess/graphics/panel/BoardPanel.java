@@ -42,15 +42,12 @@ public class BoardPanel extends JPanel {
         Character[] chars = HintUtil.getChars();
         for (int row = 1; row <= 11; row++) {
             if (row <= 6) {
-                for (Character aChar : chars) {
-                    HexagonCell cell = new HexagonCell(row, aChar, boardLeftShift, boardTopShift);
-                    cells.add(cell);
+                for (Character colChar : chars) {
+                    cells.add( new HexagonCell(row, colChar, boardLeftShift, boardTopShift));
                 }
             } else {
-
                 for (int i = row - 6; i < chars.length - (row - 6); i++) {
-                    HexagonCell cell = new HexagonCell(row, chars[i], boardLeftShift, boardTopShift);
-                    cells.add(cell);
+                    cells.add(new HexagonCell(row, chars[i], boardLeftShift, boardTopShift));
                 }
             }
         }
@@ -59,19 +56,50 @@ public class BoardPanel extends JPanel {
     private void initializeHints() {
         int moreShift = 5;
         for (int i = 1; i < 7; i++) {
-            hints.add(new HexagonHint(i, 'z', boardLeftShift + moreShift, boardTopShift, "" + i));
+            hints.add(
+                    new HexagonHint(
+                            i,
+                            'z',
+                            boardLeftShift + moreShift,
+                            boardTopShift,
+                            "" + i
+                    )
+            );
         }
-
         Character[] chars = HintUtil.getChars();
-        for (Character aChar : chars) {
-            int col = HintUtil.getCol(aChar);
+        for (Character colChar : chars) {
+            int col = HintUtil.getCol(colChar);
             if (col <= 6) {
-                hints.add(new HexagonHint(0, aChar, boardLeftShift, boardTopShift - moreShift, "" + aChar));
+                hints.add(
+                        new HexagonHint(
+                                0,
+                                colChar,
+                                boardLeftShift,
+                                boardTopShift - moreShift,
+                                "" + colChar
+                        )
+                );
                 if (col <= 5) {
-                    hints.add(new HexagonHint(6 + col, aChar, boardLeftShift + moreShift, boardTopShift + moreShift, "" + (6 + col)));
+                    hints.add(
+                            new HexagonHint(
+                                    6 + col,
+                                    colChar,
+                                    boardLeftShift + moreShift,
+                                    boardTopShift + moreShift,
+                                    "" + (6 + col)
+                            )
+                    );
                 }
             } else {
-                hints.add(new HexagonHint(0, aChar, boardLeftShift - moreShift, boardTopShift - moreShift, "" + aChar));
+                hints.add(
+                        new HexagonHint(
+                                0,
+                                colChar,
+                                boardLeftShift - moreShift,
+                                boardTopShift - moreShift,
+                                "" + colChar
+                        )
+                );
             }
         }
 
