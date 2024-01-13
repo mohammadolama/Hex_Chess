@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 public class HintUtil {
     private static final HashMap<Character, Integer> map = new HashMap<>();
@@ -26,6 +27,15 @@ public class HintUtil {
 
     public static int getCol(char c) {
         return map.get(c);
+    }
+
+    public static char getCharCol(int x) {
+        for (Map.Entry<Character, Integer> e : map.entrySet()) {
+            if (e.getValue() == x) {
+                return e.getKey();
+            }
+        }
+        return 0;
     }
 
     public static Character[] getChars() {

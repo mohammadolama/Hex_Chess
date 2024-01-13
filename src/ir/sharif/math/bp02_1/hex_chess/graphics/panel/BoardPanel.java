@@ -43,7 +43,7 @@ public class BoardPanel extends JPanel {
         for (int row = 1; row <= 11; row++) {
             if (row <= 6) {
                 for (Character colChar : chars) {
-                    cells.add( new HexagonCell(row, colChar, boardLeftShift, boardTopShift));
+                    cells.add(new HexagonCell(row, colChar, boardLeftShift, boardTopShift));
                 }
             } else {
                 for (int i = row - 6; i < chars.length - (row - 6); i++) {
@@ -61,6 +61,15 @@ public class BoardPanel extends JPanel {
                             i,
                             'z',
                             boardLeftShift + moreShift,
+                            boardTopShift,
+                            "" + i
+                    )
+            );
+            hints.add(
+                    new HexagonHint(
+                            i,
+                            'x',
+                            boardLeftShift - moreShift,
                             boardTopShift,
                             "" + i
                     )
@@ -85,6 +94,15 @@ public class BoardPanel extends JPanel {
                                     6 + col,
                                     colChar,
                                     boardLeftShift + moreShift,
+                                    boardTopShift + moreShift,
+                                    "" + (6 + col)
+                            )
+                    );
+                    hints.add(
+                            new HexagonHint(
+                                    6 + col,
+                                    HintUtil.getCharCol(12 - col),
+                                    boardLeftShift - moreShift,
                                     boardTopShift + moreShift,
                                     "" + (6 + col)
                             )
