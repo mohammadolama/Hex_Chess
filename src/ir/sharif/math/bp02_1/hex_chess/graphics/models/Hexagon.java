@@ -27,7 +27,7 @@ public abstract class Hexagon implements Paintable {
         double x = startX + ((3 * Config.CELL_SIZE / 2.0) * (iCol - 1));
         double y = startY + height * 8;
         y += (height / 2) * (iCol <= 6 ? (iCol - 1) : (11 - iCol));
-        y -= height * (iCol <= 6 ? (row - 1) : (5 - (iCol - row)));
+        y -= height * (row - 1);
 
         Polygon hex = new Polygon();
         for (int i = 0, deg = 90; i < 6; i++, deg += 60) {

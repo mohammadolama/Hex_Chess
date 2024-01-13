@@ -37,25 +37,23 @@ public class BoardPanel extends JPanel {
 
     public void initialize() {
         boardLeftShift = (getWidth() - (15 * Config.CELL_SIZE)) / 2;
-        System.out.println(getWidth());
-        System.out.println(boardBorderWidth);
         initialBaseBoard();
         initializeHints();
     }
 
     private void initialBaseBoard() {
         Character[] chars = HintUtil.getChars();
-        for (Character aChar : chars) {
-            int col = HintUtil.getCol(aChar);
-            if (col <= 6) {
-                for (int i = 1; i < 6 + col; i++) {
-                    HexagonCell tile = new HexagonCell(i, aChar, boardLeftShift, boardTopShift);
-                    cells.add(tile);
+        for (int row = 1; row <= 11; row++) {
+            if (row <= 6) {
+                for (Character aChar : chars) {
+                    HexagonCell cell = new HexagonCell(row, aChar, boardLeftShift, boardTopShift);
+                    cells.add(cell);
                 }
             } else {
-                for (int i = col - 5; i < 12; i++) {
-                    HexagonCell tile = new HexagonCell(i, aChar, boardLeftShift, boardTopShift);
-                    cells.add(tile);
+
+                for (int i = row - 6; i < chars.length - (row - 6); i++) {
+                    HexagonCell cell = new HexagonCell(row, chars[i], boardLeftShift, boardTopShift);
+                    cells.add(cell);
                 }
             }
         }
@@ -76,7 +74,7 @@ public class BoardPanel extends JPanel {
                     hints.add(new HexagonHint(6 + col, aChar, boardLeftShift + moreShift, boardTopShift + moreShift, "" + (6 + col)));
                 }
             } else {
-                hints.add(new HexagonHint(col - 6, aChar, boardLeftShift - moreShift, boardTopShift - moreShift, "" + aChar));
+                hints.add(new HexagonHint(0, aChar, boardLeftShift - moreShift, boardTopShift - moreShift, "" + aChar));
             }
         }
 
