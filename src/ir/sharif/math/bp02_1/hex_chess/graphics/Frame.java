@@ -9,7 +9,6 @@ import ir.sharif.math.bp02_1.hex_chess.graphics.util.Loop;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 
 public class Frame extends JFrame {
     private EventListener eventListener;
@@ -37,14 +36,8 @@ public class Frame extends JFrame {
     }
 
     private void update() {
-        try {
-            SwingUtilities.invokeAndWait(() -> {
-                this.revalidate();
-                this.repaint();
-            });
-        } catch (InterruptedException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        this.revalidate();
+        this.repaint();
     }
 
     private void addMenuBar() {
