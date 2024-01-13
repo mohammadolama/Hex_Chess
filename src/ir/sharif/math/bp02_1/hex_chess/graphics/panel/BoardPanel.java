@@ -12,8 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BoardPanel extends JPanel {
     private int boardLeftShift = 150;
@@ -30,8 +30,8 @@ public class BoardPanel extends JPanel {
         setBackground(Color.decode("#f7f7f7"));
         this.addMouseListener(new BoardMouseListener());
         this.eventListener = new DummyEventListener();
-        cells = new ArrayList<>();
-        hints = new ArrayList<>();
+        cells = new CopyOnWriteArrayList<>();
+        hints = new CopyOnWriteArrayList<>();
         message = "";
     }
 

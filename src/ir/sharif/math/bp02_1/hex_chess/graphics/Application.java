@@ -14,7 +14,7 @@ public class Application {
     private final RemovedPiecesPanel removedPiecesPanel;
 
     public Application() {
-        this.mainFrame = Frame.getInstance();
+        this.mainFrame = new Frame();
         this.boardPanel = new BoardPanel();
         this.mainFrame.getContentPane().setLayout(new BorderLayout());
         this.mainFrame.getContentPane().add(boardPanel, BorderLayout.CENTER);

@@ -13,13 +13,7 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 
 public class Frame extends JFrame {
-    private static Frame instance;
     private EventListener eventListener;
-
-    public static Frame getInstance() {
-        if (instance == null) instance = new Frame();
-        return instance;
-    }
 
     private File chooseFile() {
         JFileChooser chooser = new JFileChooser();
@@ -28,7 +22,7 @@ public class Frame extends JFrame {
         return chooser.getSelectedFile();
     }
 
-    private Frame() {
+    public Frame() {
         this.eventListener = new DummyEventListener();
         setSize(new Dimension(Config.GAME_WIDTH, Config.GAME_HEIGHT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
