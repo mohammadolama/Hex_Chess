@@ -13,9 +13,16 @@ import java.io.File;
 public class Frame extends JFrame {
     private EventListener eventListener;
 
-    private File chooseFile() {
+    private File chooseOpenFile() {
         JFileChooser chooser = new JFileChooser();
         int choice = chooser.showOpenDialog(this);
+        if (choice != JFileChooser.APPROVE_OPTION) return null;
+        return chooser.getSelectedFile();
+    }
+
+    private File chooseSaveFile() {
+        JFileChooser chooser = new JFileChooser();
+        int choice = chooser.showSaveDialog(this);
         if (choice != JFileChooser.APPROVE_OPTION) return null;
         return chooser.getSelectedFile();
     }
@@ -49,14 +56,14 @@ public class Frame extends JFrame {
         JMenuItem openMenuItem = new JMenuItem("Open");
         fileMenu.add(openMenuItem);
         openMenuItem.addActionListener((actionEvent) -> {
-            File file = chooseFile();
+            File file = chooseOpenFile();
             if (file != null) {
                 eventListener.onLoad(file);
             }
         });
         JMenuItem saveMenuItem = new JMenuItem("Save");
         saveMenuItem.addActionListener((actionEvent) -> {
-            File file = chooseFile();
+            File file = chooseSaveFile();
             if (file != null) {
                 eventListener.onSave(file);
             }
