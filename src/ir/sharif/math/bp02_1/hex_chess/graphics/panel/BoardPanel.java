@@ -162,7 +162,7 @@ public class BoardPanel extends JPanel {
             targetCell.setBackGroundColor(backGroundColor);
             targetCell.setTextColor(textColor);
         } else {
-            System.err.printf("cant find cel with row=%d, col=%c", row, col);
+            System.err.printf("cant find cell with row=%d, col=%c \n", row, col);
         }
     }
 
